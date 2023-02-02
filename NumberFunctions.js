@@ -78,7 +78,7 @@ function isPrime(number) {
       //);
       //this will only happen when the thing we divind by is equal to number
       if (factor === 1 && actual === 1) {
-        //temp if for for logging prime numbers
+        //temp if for for logging prime numbers put it outside so it updates file every time its called and not at end
         let newPrime = true;
         for (let j = 0; j < primeNumbers.length; j++) {
           if (primeNumbers[j] == number) {
@@ -88,7 +88,7 @@ function isPrime(number) {
         if (newPrime) {
           primeNumbers.push(number);
           SortList(primeNumbers);
-          console.log(primeNumbers);
+          //console.log(primeNumbers);
           WriteToJSON("./PrimeNumbers.json", primeNumbers);
         }
         return true;
@@ -124,16 +124,23 @@ function isPrime(number) {
     "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠻⠿⠿⠿⢿⣿⣿⡿⠿⠿⠿⠿⠛⠛⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 }
 
-for (let k = 3; k < 10000; k++) {
-  console.log(isPrime(k));
+for (let k = 100000; k < 150000; k++) {
+  isPrime(k);
+  //me filling out list
 }
 console.log("Is 19 prime? " + isPrime(19));
 console.log("Is 18 prime? " + isPrime(18));
 
 //does some json stuffs -- should not be in the code.org submit if it is woops i guess this does nothing on code.org
-let rList = [34, 64, 1, 5432, 4, 10, 7, 11, 16];
+var rList = [];
+for(let h = 0; h < 6; h++){
+  rList.push(getRandomInt(0, 1000));
+}
+console.log(rList);
 SortList(rList);
 console.log(rList);
+
+//sorts lists
 function SortList(list) {
   var i;
   for (i = 1; i < list.length; i++) {
