@@ -29,6 +29,7 @@ function getRandomInt(min, max) {
 
 console.log("Random number between 1 and 10 - " + getRandomInt(1, 10));
 console.log("Random number between 100 and 1000 - " + getRandomInt(100, 1000));
+console.log("Random number between 10000 and 1000000 - " + getRandomInt("10000", "1000000"));
 
 //returns if a whole number is prime or not (t/f)
 //number the whole number that needs to be checked
@@ -53,6 +54,7 @@ function isPrime(number) {
   } else {
     var i;
     var closestKnownPrime = -1;
+    let newPrime = true;
     for (i = 0; i <= number + 1; i++) {
       var factor; //tracks the factor rounded
       var actual; //tracks the actual to remove decimals from triggering system
@@ -79,23 +81,23 @@ function isPrime(number) {
       //this will only happen when the thing we divind by is equal to number
       if (factor === 1 && actual === 1) {
         //temp if for for logging prime numbers put it outside so it updates file every time its called and not at end
-        let newPrime = true;
-        for (let j = 0; j < primeNumbers.length; j++) {
-          if (primeNumbers[j] == number) {
-            newPrime = false;
-          }
-        }
-        if (newPrime) {
-          primeNumbers.push(number);
-          SortList(primeNumbers);
-          //console.log(primeNumbers);
-          WriteToJSON("./PrimeNumbers.json", primeNumbers);
-        }
-        return true;
+        break;
       } else if (factor == actual) {
         return false;
       }
     }
+    for (let j = 0; j < primeNumbers.length; j++) {
+      if (primeNumbers[j] == number) {
+        newPrime = false;
+      }
+    }
+    if (newPrime) {
+      primeNumbers.push(number);
+      SortList(primeNumbers);
+      //console.log(primeNumbers);
+      WriteToJSON("./PrimeNumbers.json", primeNumbers);
+    }
+    return true;
   }
 }
 //I'll like to thank the rubber ducky debugging
@@ -124,16 +126,12 @@ function isPrime(number) {
     "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠻⠿⠿⠿⢿⣿⣿⡿⠿⠿⠿⠿⠛⠛⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 }
 
-for (let k = 100000; k < 150000; k++) {
-  isPrime(k);
-  //me filling out list
-}
 console.log("Is 19 prime? " + isPrime(19));
 console.log("Is 18 prime? " + isPrime(18));
 
 //does some json stuffs -- should not be in the code.org submit if it is woops i guess this does nothing on code.org
 var rList = [];
-for(let h = 0; h < 6; h++){
+for (let h = 0; h < 6; h++) {
   rList.push(getRandomInt(0, 1000));
 }
 console.log(rList);
