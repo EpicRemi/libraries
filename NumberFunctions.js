@@ -78,10 +78,19 @@ function isPrime(number) {
       //);
       //this will only happen when the thing we divind by is equal to number
       if (factor === 1 && actual === 1) {
-        primeNumbers.push(number);
-        SortList(primeNumbers);
-        console.log(primeNumbers);
-        WriteToJSON("./PrimeNumbers.json", primeNumbers);
+        //temp if for for logging prime numbers
+        let newPrime = true;
+        for (let j = 0; j < primeNumbers.length; j++) {
+          if (primeNumbers[j] == number) {
+            newPrime = false;
+          }
+        }
+        if (newPrime) {
+          primeNumbers.push(number);
+          SortList(primeNumbers);
+          console.log(primeNumbers);
+          WriteToJSON("./PrimeNumbers.json", primeNumbers);
+        }
         return true;
       } else if (factor == actual) {
         return false;
@@ -115,6 +124,9 @@ function isPrime(number) {
     "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠻⠿⠿⠿⢿⣿⣿⡿⠿⠿⠿⠿⠛⠛⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 }
 
+for (let k = 3; k < 1000; k++) {
+  console.log(isPrime(k));
+}
 console.log("Is 19 prime? " + isPrime(19));
 console.log("Is 18 prime? " + isPrime(18));
 
