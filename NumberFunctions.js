@@ -124,7 +124,7 @@ function isPrime(number) {
     "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠻⠿⠿⠿⢿⣿⣿⡿⠿⠿⠿⠿⠛⠛⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 }
 
-for (let k = 3; k < 1000; k++) {
+for (let k = 3; k < 10000; k++) {
   console.log(isPrime(k));
 }
 console.log("Is 19 prime? " + isPrime(19));
