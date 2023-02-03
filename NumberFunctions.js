@@ -21,15 +21,15 @@ function WriteToJSON(filePath, value) {
 //return's a random int - fin
 //min is the min value
 //max is the max value
-function getRandomInt(min, max) {
+function GetRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-console.log("Random number between 1 and 10 - " + getRandomInt(1, 10));
-console.log("Random number between 100 and 1000 - " + getRandomInt(100, 1000));
-console.log("Random number between 10000 and 1000000 - " + getRandomInt("10000", "1000000"));
+//console.log("Random number between 1 and 10 - " + GetRandomInt(1, 10));
+//console.log("Random number between 100 and 1000 - " + GetRandomInt(100, 1000));
+//console.log("Random number between 10000 and 1000000 - " + GetRandomInt("10000", "1000000"));
 
 //returns if a whole number is prime or not (t/f)
 //number the whole number that needs to be checked
@@ -134,15 +134,8 @@ console.log("Is 19 prime? " + isPrime(19));
 console.log("Is 18 prime? " + isPrime(18));
 
 //does some json stuffs -- should not be in the code.org submit if it is woops i guess this does nothing on code.org
-var rList = [];
-for (let h = 0; h < 6; h++) {
-  rList.push(getRandomInt(0, 1000));
-}
-console.log(rList);
-SortList(rList);
-console.log(rList);
 
-//sorts lists
+//sorts lists - fin
 function SortList(list) {
   var i;
   for (i = 1; i < list.length; i++) {
@@ -155,9 +148,15 @@ function SortList(list) {
     list[index] = temp;
   }
 }
+//var rList = [];
+//for (let h = 0; h < 6; h++) {
+//  rList.push(GetRandomInt(0, 1000));
+//}
+//console.log(rList);
+//SortList(rList);
+//console.log(rList);
 
-
-//function that will search through a list using binary searching
+//function that will search through a list using binary searching -- fin
 function BinarySearch(list, item) {
   var low = 0;
   var high = list.length - 1;
@@ -175,3 +174,7 @@ function BinarySearch(list, item) {
   }
   return null;
 }
+
+//var randomNum4BinearyTest = GetRandomInt(0, rList.length);
+//var desiredVal = rList[randomNum4BinearyTest]
+//console.log(`${desiredVal} is located at rList[${BinarySearch(rList, rList[randomNum4BinearyTest])}]`);
