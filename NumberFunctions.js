@@ -1,6 +1,7 @@
 //Remi's Library :)
 
 //personal code for personal pc
+//does some json stuffs -- should not be in the code.org submit if it is woops i guess this does nothing on code.org
 const fs = require("fs");
 
 function WriteToJSON(filePath, value) {
