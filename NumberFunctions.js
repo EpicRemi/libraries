@@ -53,55 +53,61 @@ function isPrime(number) {
     return false;
   } else {
     //use binary search to find if num in list so we dont need to do the math
-    BinarySearch(primeNumbers, number);
-    //if found then return true
-    //if not it goes on to code below
-    var i;
-    var closestKnownPrime = -1;
-    let newPrime = true;
-    for (i = 0; i <= number + 1; i++) {
-      var factor; //tracks the factor rounded
-      var actual; //tracks the actual to remove decimals from triggering system
-      //sets the highest known prime number as an anchor
-      if (primeNumbers[i] > number && closestKnownPrime === -1) {
-        closestKnownPrime = primeNumbers[i];
+    let found = BinarySearch(primeNumbers, number);
+    if (found != null) {
+      console.log("found in list");
+      return true;
+    } else {
+      console.log("doing maths");
+      //if found then return true
+      //if not it goes on to code below
+      var i;
+      var closestKnownPrime = -1;
+      let newPrime = true;
+      for (i = 0; i <= number + 1; i++) {
+        var factor; //tracks the factor rounded
+        var actual; //tracks the actual to remove decimals from triggering system
+        //sets the highest known prime number as an anchor
+        if (primeNumbers[i] > number && closestKnownPrime === -1) {
+          closestKnownPrime = primeNumbers[i];
+        }
+        //if number is higher than highest/closest known prime it will switch to +1 to narrow it down
+        if (primeNumbers[i] === undefined || primeNumbers[i] > number) {
+          factor = Math.round(number / (closestKnownPrime + i));
+          actual = number / (closestKnownPrime + i);
+        }
+        //checks the prime numbers as factors cause math does stuff (tree factoring explains why)
+        else {
+          factor = Math.round(number / primeNumbers[i]);
+          actual = number / primeNumbers[i];
+        }
+        //logs data so i can cry when fails/shows wrong data
+        //console.log(
+        //  `loop# = ${i}\nfactor: ${factor}\nactual: ${actual}\nDenominator np: ${
+        //    closestKnownPrime + i
+        //  }\nDenominator p: ${primeNumbers[i]}`
+        //);
+        //this will only happen when the thing we divind by is equal to number
+        if (factor === 1 && actual === 1) {
+          //temp if for for logging prime numbers put it outside so it updates file every time its called and not at end
+          break;
+        } else if (factor == actual) {
+          return false;
+        }
       }
-      //if number is higher than highest/closest known prime it will switch to +1 to narrow it down
-      if (primeNumbers[i] === undefined || primeNumbers[i] > number) {
-        factor = Math.round(number / (closestKnownPrime + i));
-        actual = number / (closestKnownPrime + i);
+      for (let j = 0; j < primeNumbers.length; j++) {
+        if (primeNumbers[j] == number) {
+          newPrime = false;
+        }
       }
-      //checks the prime numbers as factors cause math does stuff (tree factoring explains why)
-      else {
-        factor = Math.round(number / primeNumbers[i]);
-        actual = number / primeNumbers[i];
+      if (newPrime) {
+        primeNumbers.push(number);
+        SortList(primeNumbers);
+        //console.log(primeNumbers);
+        WriteToJSON("./PrimeNumbers.json", primeNumbers);
       }
-      //logs data so i can cry when fails/shows wrong data
-      //console.log(
-      //  `loop# = ${i}\nfactor: ${factor}\nactual: ${actual}\nDenominator np: ${
-      //    closestKnownPrime + i
-      //  }\nDenominator p: ${primeNumbers[i]}`
-      //);
-      //this will only happen when the thing we divind by is equal to number
-      if (factor === 1 && actual === 1) {
-        //temp if for for logging prime numbers put it outside so it updates file every time its called and not at end
-        break;
-      } else if (factor == actual) {
-        return false;
-      }
+      return true;
     }
-    for (let j = 0; j < primeNumbers.length; j++) {
-      if (primeNumbers[j] == number) {
-        newPrime = false;
-      }
-    }
-    if (newPrime) {
-      primeNumbers.push(number);
-      SortList(primeNumbers);
-      //console.log(primeNumbers);
-      WriteToJSON("./PrimeNumbers.json", primeNumbers);
-    }
-    return true;
   }
 }
 //I'll like to thank the rubber ducky debugging
@@ -132,7 +138,7 @@ function isPrime(number) {
 
 console.log("Is 19 prime? " + isPrime(19));
 console.log("Is 18 prime? " + isPrime(18));
-
+console.log("Is 9999991 prime? " + isPrime(9999991));
 //does some json stuffs -- should not be in the code.org submit if it is woops i guess this does nothing on code.org
 
 //sorts lists - fin
