@@ -17,7 +17,6 @@ function WriteToJSON(filePath, value) {
     });
   });
 }
-//code.org code for cord.org
 
 //return's a random int - fin
 //min is the min value
